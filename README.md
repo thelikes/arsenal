@@ -9,3 +9,4 @@ miscellaneous sploit scripts/hacks
   runner/tester
 - c# dll poc
 - c system() dll poc
+- csharp to fetch a remote, b64 payload stage
