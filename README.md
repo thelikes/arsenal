@@ -10,3 +10,4 @@ miscellaneous sploit scripts/hacks
 - c# dll poc
 - c system() dll poc
 - csharp to fetch a remote, b64 payload stage
+- csharp loadlib address resolver
