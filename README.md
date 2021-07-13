@@ -11,3 +11,5 @@ miscellaneous sploit scripts/hacks
 - c system() dll poc
 - csharp to fetch a remote, b64 payload stage
 - csharp loadlib address resolver
+- nginx redirector
+- golang rundll32.exe compatible dll
