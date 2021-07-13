@@ -1,4 +1,4 @@
-# sploits
+# arsenal
 
 miscellaneous sploit scripts/hacks
 
