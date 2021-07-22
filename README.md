@@ -13,3 +13,4 @@ miscellaneous sploit scripts/hacks
 - csharp loadlib address resolver
 - nginx redirector
 - golang rundll32.exe compatible dll
+- wsh various payloads
