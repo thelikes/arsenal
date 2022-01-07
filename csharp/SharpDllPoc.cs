@@ -4,7 +4,11 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using RGiesecke.DllExport;
 
-// Add the UnmanagedExports Nuget 
+// Requirements:
+// 1. Install Build Tools 2015 - https://www.microsoft.com/en-us/download/details.aspx?id=48159 
+// 2. Install .NET Framework v3.5 https://www.microsoft.com/en-us/download/details.aspx?id=21
+// 3. Add the UnmanagedExports Nuget 
+
 // execute: rundll32.exe GoStager.dll,Start
 
 namespace GoStager
