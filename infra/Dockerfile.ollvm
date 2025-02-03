@@ -1,0 +1,57 @@
+LABEL org.opencontainers.image.title="ollvm13-heroims"
+LABEL org.opencontainers.image.authors="thelikes@github.com"
+LABEL org.opencontainers.image.description="ollvm13-heroims based build environment with zlib support"
+# ref https://hub.docker.com/r/snovvcrash/ollvm13
+
+FROM alpine:3.18
+
+# Install required packages
+RUN apk update && \
+    apk add --no-cache build-base \
+    cmake \
+    git \
+    python3 \
+    mingw-w64-gcc \
+    mingw-w64-crt \
+    mingw-w64-headers \
+    nasm \
+    zlib \
+    zlib-dev \
+    wget && \
+    rm -rf /var/cache/apk/*
+
+# Clone and build the obfuscator project
+RUN git clone --depth=1 -b llvm-13.x --single-branch https://github.com/heroims/obfuscator /opt/ollvm && \
+    cd /opt/ollvm && \
+    wget https://github.com/llvm/llvm-project/commit/ff1681ddb303223973653f7f5f3f3435b48a1983.patch && \
+    patch llvm/include/llvm/Support/Signals.h < ff1681ddb303223973653f7f5f3f3435b48a1983.patch && \
+    mkdir build && \
+    cd build && \
+    cmake -DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_NEW_PASS_MANAGER=OFF ../llvm && \
+    sed -i 's/LLVM_TOOL_CLANG_BUILD:BOOL=OFF/LLVM_TOOL_CLANG_BUILD:BOOL=ON/g' CMakeCache.txt && \
+    sed -i "s|LLVM_EXTERNAL_CLANG_SOURCE_DIR:PATH=|LLVM_EXTERNAL_CLANG_SOURCE_DIR:PATH=`realpath ../clang`|g" CMakeCache.txt && \
+    make -j$(nproc) && \
+    make install && \
+    cd / && \
+    rm -rf /opt/ollvm
+
+# Clone and build the wclang project
+RUN git clone --depth=1 https://github.com/tpoechtrager/wclang /opt/wclang && \
+    cd /opt/wclang && \
+    cmake . && \
+    make -j$(nproc) && \
+    make install && \
+    cd / && \
+    rm -rf /opt/wclang
+
+# Download and build MinGW zlib from source
+RUN wget https://zlib.net/zlib-1.3.1.tar.gz -O /tmp/zlib-1.3.1.tar.gz && \
+    tar -xzf /tmp/zlib-1.3.1.tar.gz -C /tmp && \
+    cd /tmp/zlib-1.3.1 && \
+    CC=x86_64-w64-mingw32-gcc ./configure --prefix=/usr/x86_64-w64-mingw32 --static && \
+    make && \
+    make install
+
+WORKDIR /tmp
+
+CMD ["/bin/sh"]
